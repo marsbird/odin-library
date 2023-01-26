@@ -1,0 +1,8 @@
+div.grid-container {
+  display: grid;
+  grid-template-columns: repeat(10, auto);
+}
+
+div.grid-container > div {
+  border: 1px solid limegreen;
+}
