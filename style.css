@@ -1,3 +1,7 @@
+body {
+  background-color: moccasin;
+}
+
 div.grid-container {
   display: grid;
   grid-template-columns: repeat(10, auto);
