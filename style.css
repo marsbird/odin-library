@@ -4,9 +4,21 @@ body {
 
 div.grid-container {
   display: grid;
-  grid-template-columns: repeat(10, auto);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 div.grid-container > div {
   border: 1px solid limegreen;
+}
+
+div.inputform {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.inputform > button {
+  grid-column: 1 / -1;
 }
