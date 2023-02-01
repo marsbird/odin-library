@@ -35,7 +35,7 @@ function addBookToLibrary(title, author, length) {
 }
 
 // get user input values and send to book functions
-btn.addEventListener("click", () => {
+btn.addEventListener("click", (event) => {
   const title = document.getElementById("title");
   const author = document.getElementById("author");
   const length = document.getElementById("length");
@@ -43,6 +43,9 @@ btn.addEventListener("click", () => {
   title.value = "";
   author.value = "";
   length.value = "";
+
+  // prevent button from submitting data to server
+  event.preventDefault();
 });
 
 // add defaults
