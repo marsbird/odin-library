@@ -6,6 +6,7 @@ function Book(title, author, length) {
   this.title = title;
   this.author = author;
   this.length = length;
+  this.isRead = false;
 }
 
 function removeBookFromLibrary(indexNum) {
@@ -27,12 +28,14 @@ function addBookToLibrary(title, author, length) {
   const titleElement = document.createElement("p");
   const authorElement = document.createElement("p");
   const lengthElement = document.createElement("p");
+  const isReadElement = document.createElement("input");
   const removeButton = document.createElement("button");
 
   // add attributes
   cardElement.classList = "card";
   cardElement.dataset.index = bookIndex;
   removeButton.classList = "removeBtn";
+  isReadElement.type = "checkbox";
 
   // add text content
   titleElement.textContent = book.title;
@@ -44,8 +47,14 @@ function addBookToLibrary(title, author, length) {
   cardElement.appendChild(titleElement);
   cardElement.appendChild(authorElement);
   cardElement.appendChild(lengthElement);
+  cardElement.appendChild(isReadElement);
   cardElement.appendChild(removeButton);
   div.appendChild(cardElement);
+
+  // toggle isRead with checkbox
+  isReadElement.addEventListener("click", () => {
+    book.isRead = !book.isRead;
+  });
 
   // remove book on button click
   removeButton.addEventListener("click", () => {
