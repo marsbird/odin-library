@@ -23,19 +23,15 @@ function addBookToLibrary(title, author, length) {
   library.push(book);
   const bookIndex = library.length - 1;
 
-  //   create new DOM elements
-  const cardElement = document.createElement("div");
-  const titleElement = document.createElement("p");
-  const authorElement = document.createElement("p");
-  const lengthElement = document.createElement("p");
-  const isReadElement = document.createElement("input");
-  const removeButton = document.createElement("button");
+  //   clone template and assign elements to variables
+  const templateContent = document.querySelector("#card-template").content;
+  const newCard = document.importNode(templateContent, true);
 
-  // add attributes
-  cardElement.classList = "card";
-  cardElement.dataset.index = bookIndex;
-  removeButton.classList = "removeBtn";
-  isReadElement.type = "checkbox";
+  const titleElement = newCard.querySelector("p.title");
+  const authorElement = newCard.querySelector("span.author");
+  const lengthElement = newCard.querySelector("span.length");
+  const isReadElement = newCard.querySelector("input");
+  const removeButton = newCard.querySelector("button");
 
   // add text content
   titleElement.textContent = book.title;
@@ -43,13 +39,12 @@ function addBookToLibrary(title, author, length) {
   lengthElement.textContent = book.length;
   removeButton.textContent = "Remove Book";
 
-  // add new elements to DOM
-  cardElement.appendChild(titleElement);
-  cardElement.appendChild(authorElement);
-  cardElement.appendChild(lengthElement);
-  cardElement.appendChild(isReadElement);
-  cardElement.appendChild(removeButton);
-  div.appendChild(cardElement);
+  // add new card to DOM
+  div.appendChild(newCard);
+
+  // add data attribute to card after it's been appended to the DOM
+  const lastCard = div.querySelector("div.grid-container div:last-child");
+  lastCard.dataset.index = bookIndex;
 
   // toggle isRead with checkbox
   isReadElement.addEventListener("click", () => {
@@ -77,9 +72,5 @@ btn.addEventListener("click", (event) => {
 });
 
 // add defaults
-addBookToLibrary("A Game of Thrones", "George R. R. Martin", "819 pages");
-addBookToLibrary(
-  "Mistborn: The Final Empire",
-  "Brandon Sanderson",
-  "676 pages"
-);
+addBookToLibrary("A Game of Thrones", "George R. R. Martin", "819");
+addBookToLibrary("Mistborn: The Final Empire", "Brandon Sanderson", "676");
